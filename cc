@@ -1,1 +1,0 @@
-cc -o test main.c -L./minilibx-linux -lmlx -lXext -lX11 -lm -lz

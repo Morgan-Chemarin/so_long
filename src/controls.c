@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:00:55 by dev               #+#    #+#             */
-/*   Updated: 2025/03/26 17:00:00 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/27 16:51:55 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,63 +18,73 @@
 #define KEY_D 100
 #define KEY_ESC 65307
 
-int can_move(t_game *game, int new_x, int new_y)
+int	can_move(t_game *game, int new_x, int new_y)
 {
-    return (game->map->grid[new_y][new_x] != '1');
+	return (game->map->grid[new_y][new_x] != '1');
 }
 
-int handle_input(int key, t_game *game)
+static void	update_coords(int key, int *x, int *y)
 {
-    int new_x = game->map->player_x;
-    int new_y = game->map->player_y;
+	if (key == KEY_W)
+		(*y)--;
+	else if (key == KEY_S)
+		(*y)++;
+	else if (key == KEY_A)
+		(*x)--;
+	else if (key == KEY_D)
+		(*x)++;
+}
 
-    if (key == KEY_W) 
-        new_y--;
-    else if (key == KEY_S) 
-        new_y++;
-    else if (key == KEY_A) 
-        new_x--;
-    else if (key == KEY_D) 
-        new_x++;
-    else if (key == KEY_ESC) 
-    {
-        close_game(game);
-        exit(0);
-    }
+static int	process_tile(t_game *game, int new_x, int new_y)
+{
+	if (game->map->grid[new_y][new_x] == 'C')
+	{
+		game->map->collectibles--;
+		ft_printf("Collectible picked up! %d remaining\n",
+			game->map->collectibles);
+	}
+	if (game->map->grid[new_y][new_x] == 'E')
+	{
+		if (game->map->collectibles > 0)
+		{
+			ft_printf("There are still %d collectibles left!\n",
+				game->map->collectibles);
+			return (0);
+		}
+		ft_printf("🎉 Victory ! 🎉\n");
+		close_game(game);
+		exit(0);
+	}
+	return (1);
+}
 
-    // mettre dans un fichier separé "verification case actuelle"
-    if (game->map->grid[new_y][new_x] == 'C')
-    {
-        game->map->collectibles--; 
-        ft_printf("Collectible ramassé ! Il en reste %d\n", game->map->collectibles);
-    }
+static void	move_player(t_game *game, int new_x, int new_y)
+{
+	game->map->grid[game->map->player_y][game->map->player_x] = '0';
+	game->map->grid[new_y][new_x] = 'P';
+	game->map->player_x = new_x;
+	game->map->player_y = new_y;
+	game->moves++;
+	ft_printf("Number of moves: %d\n", game->moves);
+	render_map(game);
+}
 
-    if (game->map->grid[new_y][new_x] == 'E' && game->map->collectibles > 0)
-    {
-        ft_printf("Il reste encore %d collectibles, récupérez-les avant de sortir !\n", game->map->collectibles);
-        return (0); 
-    }
+int	handle_input(int key, t_game *game)
+{
+	int	new_x;
+	int	new_y;
 
-    if (game->map->grid[new_y][new_x] == 'E' && game->map->collectibles == 0)
-    {
-        ft_printf("🎉 Victoire ! 🎉\n");
-        close_game(game);
-        exit(0);
-    }
-
-    if (can_move(game, new_x, new_y))
-    {
-        game->map->grid[game->map->player_y][game->map->player_x] = '0';
-        game->map->grid[new_y][new_x] = 'P';
-
-        game->map->player_x = new_x;
-        game->map->player_y = new_y;
-
-        game->moves++;
-        ft_printf("Nb de mouvement : %d\n", game->moves);
-
-        render_map(game);
-    }
-
-    return (0);
+	new_x = game->map->player_x;
+	new_y = game->map->player_y;
+	if (key == KEY_ESC)
+	{
+		close_game(game);
+		exit(0);
+	}
+	update_coords(key, &new_x, &new_y);
+	if (!process_tile(game, new_x, new_y))
+		return (0);
+	if (can_move(game, new_x, new_y))
+		move_player(game, new_x, new_y);
+	return (0);
 }

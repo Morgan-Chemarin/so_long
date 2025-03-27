@@ -6,23 +6,24 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:03:25 by dev               #+#    #+#             */
-/*   Updated: 2025/03/26 17:16:45 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/27 16:53:11 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
-    int i = 0;
-    while (map->grid[i])
-        free(map->grid[i++]);
-    free(map->grid);
-    free(map);
+	int	i;
+
+	i = 0;
+	while (map->grid[i])
+		free(map->grid[i++]);
+	free(map->grid);
+	free(map);
 }
 
-void free_textures(t_game *game)
+void	free_textures(t_game *game)
 {
 	if (game->wall)
 		mlx_destroy_image(game->mlx, game->wall);
@@ -36,12 +37,14 @@ void free_textures(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit);
 }
 
-void close_game(t_game *game)
+int	close_game(t_game *game)
 {
-    free_textures(game);
-    free_map(game->map);
-    mlx_destroy_window(game->mlx, game->win);
-    mlx_destroy_display(game->mlx);
-    free(game->mlx);
-    free(game);
+	free_textures(game);
+	free_map(game->map);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	free(game);
+	exit(0);
+	return (0);
 }

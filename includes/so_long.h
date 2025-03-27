@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:30:02 by dev               #+#    #+#             */
-/*   Updated: 2025/03/27 17:06:15 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/27 17:11:22 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include "../ft_printf/ft_printf.h"
 
 # define TILE_SIZE 64
+
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
 
 typedef struct s_map
 {

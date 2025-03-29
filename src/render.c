@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:00:45 by dev               #+#    #+#             */
-/*   Updated: 2025/03/29 11:03:49 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/29 15:26:51 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	init_game(t_game *game, t_map *map)
 		return (0);
 	game->win = mlx_new_window(game->mlx, map->width * TILE_SIZE,
 			map->height * TILE_SIZE, "so_long");
+	if (!game->win)
+		return (0);
 	game->map = map;
 	game->wall = load_texture(game->mlx, "assets/wall.xpm");
 	game->floor = load_texture(game->mlx, "assets/floor.xpm");

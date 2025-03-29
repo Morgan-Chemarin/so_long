@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:59:40 by dev               #+#    #+#             */
-/*   Updated: 2025/03/27 15:31:46 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/29 14:59:14 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,18 @@
 int	validate_file(const char *filename)
 {
 	int	fd;
+	int	len;
 
+	if (!filename)
+		return (0);
+	len = 0;
+	while (filename[len])
+		len++;
+	if (len < 4 || ft_strcmp(filename + len - 4, ".ber") != 0)
+	{
+		ft_printf("Error: The file must have a .ber extension\n");
+		return (0);
+	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{

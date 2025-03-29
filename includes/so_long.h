@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:30:02 by dev               #+#    #+#             */
-/*   Updated: 2025/03/29 11:02:25 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/29 14:56:23 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	free_map_array(char **map, int height);
 
 //utils.c
 char	*ft_strdup(const char *s);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

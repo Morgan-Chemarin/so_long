@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 15:08:53 by dev               #+#    #+#             */
-/*   Updated: 2025/03/27 16:11:31 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/29 15:25:36 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,14 @@ int	flood_fill(t_map *temp, int x, int y, int *exit_found)
 		return (0);
 	if (temp->grid[y][x] == '1' || temp->grid[y][x] == 'V')
 		return (0);
+	if (temp->grid[y][x] == 'E')
+	{
+		*exit_found = 1;
+		if (temp->collectibles > 0)
+			return (0);
+	}
 	if (temp->grid[y][x] == 'C')
 		temp->collectibles--;
-	if (temp->grid[y][x] == 'E')
-		*exit_found = 1;
 	temp->grid[y][x] = 'V';
 	if (temp->collectibles == 0 && *exit_found)
 		return (1);

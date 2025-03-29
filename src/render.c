@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:00:45 by dev               #+#    #+#             */
-/*   Updated: 2025/03/27 15:52:15 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/29 11:03:49 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,9 @@ void	render_map(t_game *game)
 		while (x < game->map->width)
 		{
 			tile = game->map->grid[y][x];
-			mlx_put_image_to_window(game->mlx, game->win, game->floor,
-				x * TILE_SIZE, y * TILE_SIZE);
+			if (game->map->grid[y][x] == '0')
+				mlx_put_image_to_window(game->mlx, game->win, game->floor,
+					x * TILE_SIZE, y * TILE_SIZE);
 			put_tile_image(game, tile, x, y);
 			x++;
 		}

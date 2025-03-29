@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:30:02 by dev               #+#    #+#             */
-/*   Updated: 2025/03/27 17:11:22 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/29 11:02:25 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <fcntl.h>
 # include <stdlib.h>
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include "../get-next-line/get_next_line.h"
 # include "../ft_printf/ft_printf.h"
 

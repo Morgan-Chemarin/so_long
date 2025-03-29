@@ -2,7 +2,7 @@ NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-MLX_FLAGS = -I/usr/include -L/usr/lib -lmlx -lX11 -lXext
+MLX_FLAGS = -I./minilibx-linux -L./minilibx-linux -lmlx -lX11 -lXext
 
 SRCS = main.c src/map_parser.c src/free_and_close.c src/validate.c src/render.c src/utils.c src/controls.c \
 		src/pathfinding.c get-next-line/get_next_line.c get-next-line/get_next_line_utils.c
@@ -17,6 +17,7 @@ HEADERS = includes/so_long.h
 all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_PRINTF)
+	$(MAKE) -C minilibx-linux
 	$(CC) $(CFLAGS) $(OBJS) $(OBJS_PRINTF) $(MLX_FLAGS) -o $(NAME)
 
 %.o: %.c $(HEADERS)

@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:59:40 by dev               #+#    #+#             */
-/*   Updated: 2025/03/31 15:33:22 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/31 15:36:05 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_map_size(void *mlx, t_map *map)
 	int	win_width;
 
 	mlx_get_screen_size(mlx, &win_width, &win_height);
-	if (map->width * TILE_SIZE > win_width ||
+	if (map->width * TILE_SIZE > win_width || \
 		map->height * TILE_SIZE > win_height)
 	{
 		ft_printf("Error\nMap size exceeds screen dimensions.\n");

@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:00:45 by dev               #+#    #+#             */
-/*   Updated: 2025/03/31 15:14:59 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/31 15:26:58 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	init_game(t_game *game, t_map *map)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		return (0);
-	if (!check_map_size(game->mlx, map))
 		return (0);
 	game->win = mlx_new_window(game->mlx, map->width * TILE_SIZE,
 			map->height * TILE_SIZE, "so_long");

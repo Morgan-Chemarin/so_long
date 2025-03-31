@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:55:31 by dev               #+#    #+#             */
-/*   Updated: 2025/03/31 15:14:39 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/31 15:27:38 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ int	main(int argc, char **argv)
 		free(game);
 		return (1);
 	}
-	render_map(game);
+	if (!check_map_size(game->mlx, map))
+	{
+		close_game(game);
+		return (0);
+	}
+		render_map(game);
 	mlx_loop(game->mlx);
 	close_game(game);
 	return (0);

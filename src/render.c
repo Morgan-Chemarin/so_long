@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:00:45 by dev               #+#    #+#             */
-/*   Updated: 2025/03/29 15:26:51 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/31 15:14:59 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*load_texture(void *mlx, char *path)
 
 	img = mlx_xpm_file_to_image(mlx, path, &w, &h);
 	if (!img)
-		ft_printf("Error: Can't load %s\n", path);
+		ft_printf("Error\nCan't load %s\n", path);
 	return (img);
 }
 
@@ -28,6 +28,8 @@ int	init_game(t_game *game, t_map *map)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
+		return (0);
+	if (!check_map_size(game->mlx, map))
 		return (0);
 	game->win = mlx_new_window(game->mlx, map->width * TILE_SIZE,
 			map->height * TILE_SIZE, "so_long");
@@ -41,7 +43,7 @@ int	init_game(t_game *game, t_map *map)
 	game->exit = load_texture(game->mlx, "assets/exit.xpm");
 	if (!game->wall || !game->floor || !game->player || \
 	!game->collectible || !game->exit)
-		return (ft_printf("Error: Problem loading textures\n"), 0);
+		return (ft_printf("Error\nProblem loading textures\n"), 0);
 	mlx_hook(game->win, 2, 1L << 0, handle_input, game);
 	mlx_hook(game->win, 17, 0, close_game, game);
 	return (1);

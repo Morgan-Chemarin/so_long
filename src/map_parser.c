@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:00:50 by dev               #+#    #+#             */
-/*   Updated: 2025/03/27 16:34:12 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/31 15:14:57 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	validate_row(t_map *map, int y, int *player_count, int *exit_count)
 		c = map->grid[y][x];
 		if ((y == 0 || y == map->height - 1 || x == 0 || \
 		x == map->width - 1) && c != '1')
-			return (ft_printf("Error: The map is not enclosed\n"), 0);
+			return (ft_printf("Error\nThe map is not enclosed\n"), 0);
 		if (c == 'P')
 		{
 			(*player_count)++;
@@ -98,7 +98,7 @@ static int	validate_row(t_map *map, int y, int *player_count, int *exit_count)
 		else if (c == 'C')
 			map->collectibles++;
 		else if (c != '0' && c != '1')
-			return (ft_printf("Error: Invalid character '%c'\n", c), 0);
+			return (ft_printf("Error\nInvalid character '%c'\n", c), 0);
 		x++;
 	}
 	return (1);
@@ -116,16 +116,16 @@ int	validate_map(t_map *map)
 	while (y < map->height)
 	{
 		if ((int)ft_strlen(map->grid[y]) != map->width)
-			return (ft_printf("Error: The map is not rectangular\n"), 0);
+			return (ft_printf("Error\nThe map is not rectangular\n"), 0);
 		if (!validate_row(map, y, &player_count, &exit_count))
 			return (0);
 		y++;
 	}
 	if (player_count != 1)
-		return (ft_printf("Error: There must be exactly 1 player\n"), 0);
+		return (ft_printf("Error\nThere must be exactly 1 player\n"), 0);
 	if (exit_count != 1)
-		return (ft_printf("Error: There must be exactly 1 exit\n"), 0);
+		return (ft_printf("Error\nThere must be exactly 1 exit\n"), 0);
 	if (map->collectibles < 1)
-		return (ft_printf("Error: There must be exactly 1 collectible\n"), 0);
+		return (ft_printf("Error\nThere must be exactly 1 collectible\n"), 0);
 	return (1);
 }

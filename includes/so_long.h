@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:30:02 by dev               #+#    #+#             */
-/*   Updated: 2025/03/29 14:56:23 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/31 15:11:43 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_map	*parse_map(const char *filename);
 int		validate_map(t_map *map);
 
 //validate.c
+int		check_map_size(void *mlx, t_map *map);
 int		validate_file(const char *filename);
 int		validate_map_and_load(t_map **map, const char *filename);
 

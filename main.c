@@ -6,7 +6,7 @@
 /*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:55:31 by dev               #+#    #+#             */
-/*   Updated: 2025/03/27 15:22:28 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/31 15:14:39 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	if (argc != 2)
-		return (ft_printf("Error: ./so_long <map.ber>\n"), 1);
+		return (ft_printf("Error\n./so_long <map.ber>\n"), 1);
 	if (!validate_map_and_load(&map, argv[1]))
 		return (1);
 	game = malloc(sizeof(t_game));
